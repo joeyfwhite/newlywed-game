@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Admin: The Newlywed Game</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="vendor/pptxgen.bundle.js" defer></script>
+</head>
+<body>
+  <main class="admin-shell">
+    <!-- Sign in -->
+    <section id="login" class="panel login-card" hidden>
+      <div class="eyebrow">Administrator</div>
+      <h1 style="margin:6px 0 4px">The Newlywed Game</h1>
+      <p class="lede">Sign in to see answers and build the slideshow.</p>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <div class="notice notice-error" id="login-error" style="margin-top:14px" hidden></div>
+        <button class="btn" type="submit" style="width:100%;margin-top:18px">Sign In</button>
+      </form>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dash" hidden>
+      <header class="admin-header">
+        <div>
+          <div class="eyebrow">Admin Dashboard</div>
+          <h1>The Newlywed Game: 40 Years of Love</h1>
+          <div class="who" id="who"></div>
+        </div>
+        <div class="row">
+          <button class="btn-ghost" id="refresh">Refresh</button>
+          <button class="btn-ghost" id="signout">Sign Out</button>
+        </div>
+      </header>
+
+      <div class="panel">
+        <div id="ready" class="ready-banner waiting"><span class="ready-dot"></span><span id="ready-text"></span></div>
+        <div class="grid-2" id="status"></div>
+        <div class="row" style="margin-top:16px;justify-content:space-between">
+          <div><strong>Submissions:</strong> <span id="lock-state"></span></div>
+          <button class="btn btn-ruby" id="lock-btn"></button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Private Survey Links</h2>
+        <p class="lede">Each parent gets their own link. The link itself is the key, so send each one only to that parent (a text message works well). Creating a new link turns the old one off. Saved answers are kept.</p>
+        <div class="grid-2" id="links"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Slideshow</h2>
+        <p class="lede">13 slides: a title slide, one slide per question with Mom on the left and Dad on the right, and a closing slide. The download always uses the latest answers, so just download again after any change.</p>
+        <div class="row">
+          <button class="btn btn-gold" id="pptx-btn">Download PowerPoint (.pptx)</button>
+          <button class="btn-ghost" id="preview-btn">Preview Slideshow</button>
+        </div>
+        <p class="meta" id="pptx-note" style="margin-top:10px"></p>
+        <div id="preview" class="slides-grid"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Answers Side by Side</h2>
+        <p class="lede">Copy any answer, or tap Edit to fix a typo before the party.</p>
+        <table class="compare">
+          <thead><tr><th>Question</th><th>Mom’s Answer</th><th>Dad’s Answer</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2>Download Raw Responses</h2>
+        <div class="row">
+          <button class="btn-ghost" id="csv-btn">CSV</button>
+          <button class="btn-ghost" id="xlsx-btn">Excel (.xlsx)</button>
+          <button class="btn-ghost" id="json-btn">Raw data (.json)</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <details class="advanced">
+          <summary>Testing tools</summary>
+          <p class="lede" style="margin-top:10px">Use these only before sending the real links: they erase a parent’s saved answers.</p>
+          <div class="row">
+            <button class="btn-ghost" data-reset="mom">Erase Mom’s answers</button>
+            <button class="btn-ghost" data-reset="dad">Erase Dad’s answers</button>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <div id="boot" class="spinner" role="status" aria-label="Loading"></div>
+  </main>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
